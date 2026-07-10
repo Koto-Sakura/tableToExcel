@@ -6,8 +6,8 @@ A SiYuan Note plugin that exports complex tables (with merged cells, line breaks
 
 ## Features
 
-- **Copy to Excel** — Right-click the table block icon → "Copy to Excel", then paste directly into Excel (supports merged cells and in-cell line breaks)
-- **Export to Excel** — *(Coming soon)* Export tables as .xlsx files
+- **Copy to Excel** — Right-click the table block icon → "Copy to Excel", then paste directly into Excel (supports in-cell line breaks)
+- **Export to Excel (.xlsx)** — Right-click the table block icon → "Export to Excel", download a proper .xlsx file with merged cells and line breaks fully preserved
 
 ## Usage
 
@@ -51,3 +51,7 @@ After `pnpm run build`, the `dist/` directory contains all plugin files. The fil
 ## License
 
 [MIT](LICENSE)
+
+## Credits
+
+This plugin was developed with the assistance of AI (AtomCode / deepseek-v4-flash). All code was reviewed and tested by humans before release.

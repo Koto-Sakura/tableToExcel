@@ -44,9 +44,9 @@ export default class TableToExcelPlugin extends Plugin {
         const exportItem = this.createMenuItem(
             "iconDownload",
             this.i18n.exportToExcel,
-            () => {
+            async () => {
                 try {
-                    exportTableToExcel(tableBlock);
+                    await exportTableToExcel(tableBlock);
                     window.siyuan.menus.menu.remove();
                     showMessage(this.i18n.exportedToExcel);
                 } catch (e: any) {

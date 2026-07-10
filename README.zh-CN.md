@@ -43,3 +43,7 @@ pnpm run build   # 生产构建
 ## 许可证
 
 [MIT](LICENSE)
+
+## 致谢
+
+本插件由 AI（AtomCode / deepseek-v4-flash）辅助开发，所有代码均经过人工审核和测试后发布。
