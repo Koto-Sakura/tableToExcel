@@ -10,5 +10,8 @@
   "removedData": "数据已删除",
   "confirmRemove": "确认删除 ${name} 中的数据？",
   "insertEmoji": "插入表情",
-  "removeSpace": "移除空格"
+  "removeSpace": "移除空格",
+  "copyToExcel": "复制到Excel",
+  "copiedToExcel": "已复制到剪贴板，可直接粘贴到Excel",
+  "exportToExcel": "导出为Excel文件"
 }

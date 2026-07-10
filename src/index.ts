@@ -32,6 +32,7 @@ import {
     IKernelPluginRpcCall,
 } from "siyuan";
 import "./index.scss";
+import { copyTableBlockToClipboard } from "./clipboardExporter";
 
 const STORAGE_NAME = "menu-config";
 const TAB_TYPE = "custom_tab";
@@ -41,6 +42,7 @@ export default class PluginSample extends Plugin {
     private custom: () => Custom;
     private isMobile: boolean;
     private blockIconEventBindThis = this.blockIconEvent.bind(this);
+    private onTableBlockIconBindThis = this.onTableBlockIcon.bind(this);
 
     updateProtyleToolbar(toolbar: Array<string | IMenuItem>) {
         toolbar.push("|");
@@ -61,6 +63,7 @@ export default class PluginSample extends Plugin {
         this.kernel.rpc.bind("unload", this.onKernelPluginUnload);
         this.kernel.rpc.bind("notify", this.onKernelPluginNotify);
         this.eventBus.on("kernel-plugin-state-change", this.onKernelPluginStateChange);
+        this.eventBus.on("click-blockicon", this.onTableBlockIconBindThis);
 
         this.data[STORAGE_NAME] = {readonlyText: "Readonly"};
 
@@ -271,6 +274,7 @@ export default class PluginSample extends Plugin {
         this.kernel.rpc.unbind("unload", this.onKernelPluginUnload);
         this.kernel.rpc.unbind("notify", this.onKernelPluginNotify);
         this.eventBus.off("kernel-plugin-state-change", this.onKernelPluginStateChange);
+        this.eventBus.off("click-blockicon", this.onTableBlockIconBindThis);
     }
 
     uninstall() {
@@ -420,6 +424,34 @@ export default class PluginSample extends Plugin {
             },
         });
     }
+
+    private onTableBlockIcon({detail}: any) {
+        const tableBlock = detail.blockElements.find(
+            (el: HTMLElement) => el.dataset.type === "NodeTable",
+        );
+        if (!tableBlock) {
+            return;
+        }
+
+        // 自定义菜单项元素，绕过 icon/iconHTML/label 的渲染问题
+        const itemElement = document.createElement("div");
+        itemElement.className = "b3-menu__item";
+        itemElement.innerHTML = `<svg class="b3-menu__icon"><use xlink:href="#iconCopy"></use></svg><span class="b3-menu__label">${this.i18n.copyToExcel}</span>`;
+        itemElement.addEventListener("click", () => {
+            copyTableBlockToClipboard(tableBlock).then(() => {
+                // 关闭菜单
+                window.siyuan.menus.menu.remove();
+                showMessage(this.i18n.copiedToExcel);
+            }).catch((e: Error) => {
+                showMessage(`复制失败: ${e.message}`, 6000, "error");
+            });
+        });
+
+        detail.menu.addItem({
+            id: "tableToExcel_copy",
+            element: itemElement,
+        });
+    };
 
     private showDialog() {
         const dialog = new Dialog({

@@ -10,5 +10,8 @@
   "removedData": "Data deleted",
   "confirmRemove": "Confirm to delete the data in ${name}?",
   "insertEmoji": "Insert Emoji",
-  "removeSpace": "Remove Space"
+  "removeSpace": "Remove Space",
+  "copyToExcel": "Copy to Excel",
+  "copiedToExcel": "Copied to clipboard, paste into Excel",
+  "exportToExcel": "Export to Excel"
 }
