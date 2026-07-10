@@ -46,4 +46,4 @@ pnpm run build   # 生产构建
 
 ## 致谢
 
-本插件由 AI（AtomCode / deepseek-v4-flash）辅助开发，所有代码均经过人工审核和测试后发布。
+本插件由 AI 辅助开发，所有代码均经过人工审核和测试后发布。

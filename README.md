@@ -54,4 +54,4 @@ After `pnpm run build`, the `dist/` directory contains all plugin files. The fil
 
 ## Credits
 
-This plugin was developed with the assistance of AI (AtomCode / deepseek-v4-flash). All code was reviewed and tested by humans before release.
+This plugin was developed with the assistance of AI. All code was reviewed and tested by humans before release.
