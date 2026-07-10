@@ -31,7 +31,7 @@ export default class TableToExcelPlugin extends Plugin {
             this.i18n.copyToExcel,
             () => {
                 copyTableBlockToClipboard(tableBlock).then(() => {
-                    window.siyuan.menus.menu.remove();
+                    (window.siyuan.menus.menu as any).remove();
                     showMessage(this.i18n.copiedToExcel);
                 }).catch((e: Error) => {
                     showMessage(`复制失败: ${e.message}`, 6000, "error");
@@ -47,7 +47,7 @@ export default class TableToExcelPlugin extends Plugin {
             async () => {
                 try {
                     await exportTableToExcel(tableBlock);
-                    window.siyuan.menus.menu.remove();
+                    (window.siyuan.menus.menu as any).remove();
                     showMessage(this.i18n.exportedToExcel);
                 } catch (e: any) {
                     showMessage(`导出失败: ${e.message}`, 6000, "error");
