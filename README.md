@@ -31,11 +31,13 @@ The plugin parses the table DOM, extracts all data, and uses SheetJS (xlsx) to g
 
 ## Installation
 
-1. Download `package.zip` from the [Releases page](https://github.com/Koto-Sakura/tableToExcel/releases)
-2. In SiYuan: **Settings → Marketplace → Download → Manual install**
-3. Select the downloaded `package.zip`
+### Method 1: SiYuan Marketplace
+Open SiYuan → **Settings → Marketplace → Download** → find **tableToExcel** and install.
 
-Or manually extract to `{workspace}/data/plugins/tableToExcel/`.
+### Method 2: Manual Install
+1. Download `package.zip` from the [Releases page](https://github.com/Koto-Sakura/tableToExcel/releases)
+2. Extract to `{workspace}/data/plugins/tableToExcel/`
+3. Restart SiYuan or disable and re-enable the plugin in **Settings → Marketplace → Downloaded**
 
 ## License
 

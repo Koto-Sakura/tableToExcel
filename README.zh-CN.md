@@ -31,11 +31,13 @@
 
 ## 安装
 
-1. 从 [Releases 页面](https://github.com/Koto-Sakura/tableToExcel/releases) 下载 `package.zip`
-2. 在思源中：**设置 → 集市 → 下载 → 手动安装**
-3. 选择下载的 `package.zip`
+### 方式一：从集市安装
+打开思源 → **设置 → 集市 → 下载** → 找到 **tableToExcel** 并安装。
 
-或手动解压到 `{工作空间}/data/plugins/tableToExcel/`。
+### 方式二：手动安装
+1. 从 [Releases 页面](https://github.com/Koto-Sakura/tableToExcel/releases) 下载 `package.zip`
+2. 解压到 `{工作空间}/data/plugins/tableToExcel/`
+3. 重启思源，或在 **设置 → 集市 → 已下载** 中禁用再启用插件
 
 ## 许可证
 
