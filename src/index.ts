@@ -4,6 +4,7 @@ import {
 } from "siyuan";
 import "./index.scss";
 import { copyTableBlockToClipboard } from "./clipboardExporter";
+import { exportTableToExcel } from "./excelExporter";
 
 export default class TableToExcelPlugin extends Plugin {
     private onTableBlockIconBindThis = this.onTableBlockIcon.bind(this);
@@ -24,7 +25,7 @@ export default class TableToExcelPlugin extends Plugin {
             return;
         }
 
-        // 复制到剪贴板
+        // 复制到剪贴板（快速粘贴，无合并效果）
         const copyItem = this.createMenuItem(
             "iconCopy",
             this.i18n.copyToExcel,
@@ -38,6 +39,22 @@ export default class TableToExcelPlugin extends Plugin {
             },
         );
         detail.menu.addItem({ id: "tableToExcel_copy", element: copyItem });
+
+        // 导出为 .xlsx 文件（完美保留合并单元格、换行）
+        const exportItem = this.createMenuItem(
+            "iconDownload",
+            this.i18n.exportToExcel,
+            () => {
+                try {
+                    exportTableToExcel(tableBlock);
+                    window.siyuan.menus.menu.remove();
+                    showMessage(this.i18n.exportedToExcel);
+                } catch (e: any) {
+                    showMessage(`导出失败: ${e.message}`, 6000, "error");
+                }
+            },
+        );
+        detail.menu.addItem({ id: "tableToExcel_export", element: exportItem });
     }
 
     private createMenuItem(iconName: string, label: string, onClick: () => void): HTMLDivElement {

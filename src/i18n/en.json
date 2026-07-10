@@ -1,5 +1,6 @@
 {
   "copyToExcel": "Copy to Excel",
   "copiedToExcel": "Copied to clipboard, paste into Excel",
-  "exportToExcel": "Export to Excel"
+  "exportToExcel": "Export to Excel",
+  "exportedToExcel": "Table exported"
 }

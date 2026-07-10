@@ -1,5 +1,6 @@
 {
   "copyToExcel": "复制到Excel",
   "copiedToExcel": "已复制到剪贴板，可直接粘贴到Excel",
-  "exportToExcel": "导出为Excel文件"
+  "exportToExcel": "导出为Excel文件",
+  "exportedToExcel": "表格已导出"
 }
