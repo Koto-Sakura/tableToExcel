@@ -2,51 +2,40 @@
 
 # tableToExcel
 
-A SiYuan Note plugin that exports complex tables (with merged cells, line breaks within cells) to Excel, or copies them to the clipboard for direct paste into Excel.
+A SiYuan Note plugin for exporting complex tables to Excel — supports merged cells, in-cell line breaks, and other complex table formatting.
+
+SiYuan's built-in table copy cannot handle merged cells or line breaks properly when pasting into Excel. This plugin solves that problem.
 
 ## Features
 
-- **Copy to Excel** — Right-click the table block icon → "Copy to Excel", then paste directly into Excel (supports in-cell line breaks)
-- **Export to Excel (.xlsx)** — Right-click the table block icon → "Export to Excel", download a proper .xlsx file with merged cells and line breaks fully preserved
+| Feature | Description |
+|---------|-------------|
+| **Copy to Excel** | Right-click a table → Copy to Excel → paste into Excel (`Ctrl+V`). Fast and lightweight. Suitable for tables without merged cells. |
+| **Export to Excel (.xlsx)** | Right-click a table → Export to Excel → downloads a proper `.xlsx` file. **Perfectly preserves merged cells and line breaks.** Uses SheetJS to generate a standard Excel file. |
 
-## Usage
+## How to Use
 
-1. Click the block icon (☰) on the left side of any table in the editor
-2. Select **"Copy to Excel"** from the menu
-3. Paste into Excel (`Ctrl+V`) — merged cells and line breaks are preserved
+1. Open any note containing a table
+2. Click the **block icon (☰)** on the left side of the table
+3. Choose:
+   - **Copy to Excel** — then `Ctrl+V` in Excel
+   - **Export to Excel** — the browser will download a `.xlsx` file
 
-## Demo
+## How It Works
 
-| Before (SiYuan) | After (Excel) |
-|:---:|:---:|
-| Table with merged cells (`rowspan`/`colspan`) and `Shift+Enter` line breaks | Same structure preserved in Excel, ready for further editing |
+### Copy to Excel (Clipboard)
+The plugin clones the table's DOM from SiYuan's editor, removes SiYuan-specific attributes, and writes a clean HTML table to the clipboard. Since Excel's clipboard parser does not support `rowspan`, merged cells are expanded (each cell gets its own copy of the content). Line breaks (`<br>` / `Shift+Enter`) are preserved via `mso-data-placement:same-cell`.
 
-## How it works
-
-The plugin directly clones the table's DOM from SiYuan's WYSIWYG editor, removes proprietary attributes, and writes a clean HTML table to the clipboard in Excel-compatible format. This preserves:
-- Merged cells (`colspan` / `rowspan`)
-- In-cell line breaks (`Shift+Enter`)
-- Cell text content (stripped of inline formatting)
+### Export to Excel (.xlsx)
+The plugin parses the table DOM, extracts all data, and uses SheetJS (xlsx) to generate a standard `.xlsx` file. Merged cells are stored in the Excel `<mergeCells>` list, and line breaks are enabled via the `wrapText` cell style. The result is a fully compatible Excel file with all formatting intact.
 
 ## Installation
 
-1. Download the latest release `package.zip` from [Releases](https://github.com/Koto-Sakura/tableToExcel/releases)
-2. In SiYuan, go to `Settings` → `Marketplace` → `Download` → `Manual install`
+1. Download `package.zip` from the [Releases page](https://github.com/Koto-Sakura/tableToExcel/releases)
+2. In SiYuan: **Settings → Marketplace → Download → Manual install**
 3. Select the downloaded `package.zip`
 
 Or manually extract to `{workspace}/data/plugins/tableToExcel/`.
-
-## Development
-
-```bash
-pnpm install
-pnpm run dev     # watch mode
-pnpm run build   # production build
-```
-
-## Build
-
-After `pnpm run build`, the `dist/` directory contains all plugin files. The file `package.zip` is the distributable package.
 
 ## License
 
@@ -54,4 +43,4 @@ After `pnpm run build`, the `dist/` directory contains all plugin files. The fil
 
 ## Credits
 
-This plugin was developed with the assistance of AI. All code was reviewed and tested by humans before release.
+This plugin was developed with the assistance of AI (AtomCode / deepseek-v4-flash). All code was reviewed and tested by humans before release.
