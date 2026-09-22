@@ -46,3 +46,6 @@ Open SiYuan → **Settings → Marketplace → Download** → find **tableToExce
 ## Credits
 
 This plugin was developed with the assistance of AI. All code was tested by humans before release.
+
+---
+Powered by [VSLLM](https://vsllm.com) — AI API aggregation platform.
